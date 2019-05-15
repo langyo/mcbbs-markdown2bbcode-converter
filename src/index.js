@@ -1,8 +1,8 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 
-import './index.css'
-import './font/font.css'
+// import './index.css'
+// import './font/font.css'
 import RendererConfig from './config/Renderer.json'
 import ImageCollection from './config/ImageCollection.json'
 
@@ -30,15 +30,15 @@ function setRenderer (preset) {
   preset = preset || 'default'
   let prefixes = RendererConfig.prefix
   let suffixes = RendererConfig['suffix_' + preset]
-  try {
-    if (localStorage.renderConfigOverride !== 'true') {
-      localStorage.renderConfigOverride = 'false'
-      throw new Error()
-    }
-    Object.assign(suffixes, JSON.parse(localStorage.renderConfig))
-  } catch (e) {
-    localStorage.renderConfig = JSON.stringify(suffixes)
-  }
+  // try {
+  //   if (localStorage.renderConfigOverride !== 'true') {
+  //     localStorage.renderConfigOverride = 'false'
+  //     throw new Error()
+  //   }
+  //   Object.assign(suffixes, JSON.parse(localStorage.renderConfig))
+  // } catch (e) {
+  //   localStorage.renderConfig = JSON.stringify(suffixes)
+  // }
   for (let key in prefixes) {
     let prefix = prefixes[key]
     let suffix = suffixes[key]
@@ -81,5 +81,7 @@ function main () {
   )
 }
 
-ReactDOM.render(header(), document.getElementsByTagName('header')[0])
-ReactDOM.render(main(), document.getElementsByTagName('main')[0])
+// ReactDOM.render(header(), document.getElementsByTagName('header')[0])
+// ReactDOM.render(main(), document.getElementsByTagName('main')[0])
+
+export default onTransform;

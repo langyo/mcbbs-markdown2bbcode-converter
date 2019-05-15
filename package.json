@@ -2,13 +2,20 @@
   "name": "mcbbs-markdown2bbcode-converter",
   "author": "ustc-zzzz",
   "version": "0.1.0",
-  "main": "index.js",
+  "main": "index.bundle.js",
   "dependencies": {
+    "@babel/cli": "^7.4.4",
+    "@babel/core": "^7.4.4",
+    "@babel/plugin-proposal-class-properties": "^7.4.4",
+    "@babel/preset-env": "^7.4.4",
+    "@babel/preset-react": "^7.0.0",
+    "babelify": "^10.0.0",
     "clipboard": "^1.7.1",
     "marked": "^0.3.12",
     "material-ui": "^0.20.0",
     "react": "^16.2.0",
-    "react-dom": "^16.2.0"
+    "react-dom": "^16.2.0",
+    "watchify": "^3.11.1"
   },
   "devDependencies": {
     "babel-core": "^6.26.0",
@@ -27,6 +34,28 @@
   "scripts": {
     "build": "webpack --progress --colors --verbose",
     "start-production": "webpack-dev-server --colors --progress --hot",
-    "start": "webpack-dev-server --colors --progress --hot --config webpack.development.js"
+    "start": "webpack-dev-server --colors --progress --hot --config webpack.development.js",
+    "watch:npm": "watchify index.js -t babelify -o index.bundle.js --release --verbose"
+  },
+  "babel": {
+    "presets": [
+      [
+        "@babel/preset-env",
+        {
+          "modules": "commonjs",
+          "targets": {
+            "node": "current"
+          }
+        }
+      ],
+      [
+        "@babel/preset-react"
+      ]
+    ],
+    "plugins": [
+      [
+        "@babel/plugin-proposal-class-properties"
+      ]
+    ]
   }
 }
